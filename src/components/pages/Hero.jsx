@@ -3,7 +3,7 @@ import Button from "../parts/Button";
 // import Animation from "../../assets/img/animation.json";
 import { useEffect, useState } from 'react'
 import AnimatedLetters from '../AnimatedLetters'
-import HeroImage from "../../assets/img/hero.jpeg";
+import HeroImage from "../../assets/img/hero.png";
 
 export default function Hero(props) {
   const [letterClass, setLetterClass] = useState('text-animate')
@@ -13,7 +13,7 @@ export default function Hero(props) {
   const job = 
   [
     'A Software',
-    // '  ',
+    '  ',
     'Engineer',
   ]
 
@@ -48,7 +48,7 @@ export default function Hero(props) {
             </span>
           </div>
           <div className="py-[50px]">
-            <a href="https://drive.google.com/file/d/1TERh1dRKbsWl8utCpqWhoNTdly-INw8P/view?usp=sharing">
+            <a href="https://drive.google.com/file/d/18hfj9h3Ntc0-P_BIGzaxWYMb0EWApRJ7/view?usp=sharing">
               <Button title={"Resume"} />
             </a>
           </div>
