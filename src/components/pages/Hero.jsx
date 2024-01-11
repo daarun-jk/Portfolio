@@ -3,7 +3,7 @@ import Button from "../parts/Button";
 // import Animation from "../../assets/img/animation.json";
 import { useEffect, useState } from 'react'
 import AnimatedLetters from '../AnimatedLetters'
-import HeroImage from "../../assets/img/hero.png";
+import HeroImage from "../../assets/img/hero1.png";
 
 export default function Hero(props) {
   const [letterClass, setLetterClass] = useState('text-animate')
