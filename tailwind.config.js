@@ -19,7 +19,7 @@ module.exports = {
 				"project8": "url('/src/assets/img/Unisys1.png')",
 				"project9": "url('/src/assets/img/kvslogo3.png')",
 				"project10": "url('/src/assets/img/CSA3.png')",
-				"project11": "url('/src/assets/img/NMIT4.png')",
+				"project11": "url('/src/assets/img/NMIT3.png')",
 				"project12": "url('/src/assets/img/Blockchain1.png')",
 				"project13": "url('/src/assets/img/CryptoSMS1.png')",			
 				"project14": "url('/src/assets/img/Openeyes1.png')",
