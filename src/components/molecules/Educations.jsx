@@ -10,6 +10,7 @@ export default function Educations(props) {
 			<div className="block col-start-7 col-end-13 row-start-1 h-fit">
 				<EducationDescription
 					title={props.title}
+					year={props.year}
 					description={props.description}
 					grade={props.grade}
 					float={props.float}
@@ -24,6 +25,7 @@ export default function Educations(props) {
 			<div className="block col-start-1 col-end-7 row-start-1 h-fit">
 				<EducationDescription
 					title={props.title}
+					year={props.year}
 					description={props.description}
 					grade={props.grade}
 					float={props.float}

@@ -7,6 +7,9 @@ export default function EducationDescription(props) {
 			{/* <p className="text-xs text-sky-500">Featured Project</p> */}
 			<h1 className="text-2xl font-bold font-poppins">{props.title}</h1>
 			<div className="mt-2 p-0 font-medium bg-[#ffffff] font-poppins h-fit">
+				{props.year}
+			</div>
+			<div className="mt-2 p-0 font-medium bg-[#ffffff] font-poppins h-fit">
 				{props.description}
 			</div>
 			<p className="mt-1 text-sm">{props.grade}</p>
@@ -21,6 +24,9 @@ export default function EducationDescription(props) {
 		<div className={`w-full font-fira text-black float-left text-left`}>
 			{/* <p className="text-xs text-sky-500">Featured Project</p> */}
 			<h1 className="text-2xl font-bold font-poppins">{props.title}</h1>
+			<div className="mt-2 p-0 font-medium bg-[#ffffff] font-poppins h-fit">
+				{props.year}
+			</div>
 			<div className="mt-2 p-0 font-medium bg-[#ffffff] font-poppins h-fit">
 				{props.description}
 			</div>

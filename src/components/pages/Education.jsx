@@ -8,6 +8,7 @@ export default function Experience() {
 			<Educations
 				float="right"
 				title="Nitte Meenakshi Institute of Technology"
+				year="(2018-2022)"
 				image="bg-project11"
 				description="Bachelor of Engineering | Computer Science and Engineering"
 				grade="CGPA: 9.19"
@@ -16,6 +17,7 @@ export default function Experience() {
 			<Educations
 				float="left"
 				title="Kendriya Vidyalla IISc"
+				year="(2017-2018)"
 				image="bg-project9"
 				description="XII Grade"
 				grade="95%"
