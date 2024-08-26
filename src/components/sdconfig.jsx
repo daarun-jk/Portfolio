@@ -14,8 +14,8 @@
 // 		method: "POST",
 // 		headers: {
 // 			"content-type": "application/json",
-// 			"X-RapidAPI-Key": "9924aaeaa4msh9bd75d27c306bc0p1e8854jsn7a7daf436943",
-// 			"X-RapidAPI-Host": "rapidprod-sendgrid-v1.p.rapidapi.com",
+// 			"X-RapidAPI-Key": "",
+// 			"X-RapidAPI-Host": "",
 // 		},
 // 		body: data,
 // 	};
