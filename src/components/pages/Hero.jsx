@@ -48,7 +48,7 @@ export default function Hero(props) {
             </span>
           </div>
           <div className="py-[50px]">
-            <a href="https://drive.google.com/file/d/18hfj9h3Ntc0-P_BIGzaxWYMb0EWApRJ7/view?usp=sharing">
+            <a href="https://drive.google.com/file/d/1_7Z5VrSqmTaTcPijrE1D7rSYZnX_-Nw2/view?usp=sharing">
               <Button title={"Resume"} />
             </a>
           </div>
