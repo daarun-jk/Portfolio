@@ -6,21 +6,21 @@ import Projects from "./components/pages/Projects";
 import Footer from "./components/pages/Footer";
 import Experience from "./components/pages/Experience";
 import Education from "./components/pages/Education";
+import Achievements from "./components/pages/Achievements";
 
 function App() {
 	const GitLink = "https://github.com/daarun-jk";
 	const LinkedinLink = "https://www.linkedin.com/in/daarun-jk/";
 	const mail = "daarun.jaguvakannan@gmail.com";
 
-	const sections = ["about","education","skills","experience","projects"];
+	const sections = ["about","education","skills","experience","projects","achievements"];
 
 	// const languagesSkills = ["C#", "C/C++", "Python", "Powershell", "HTML/CSS", "Javascript",];
 	// const frameworksSkills = ["MySQL", "Flask", "Node JS", "React JS"];
 	// const toolsSkills = ["Git", "Jenkins"];
 
 	//Hero Props
-	const name = "Daarun";
-	const surname = "JK";
+	const name = "Daarun JK";
 	const subtitle = "Software Engineer";
 
 	//About Props
@@ -54,6 +54,10 @@ function App() {
 				<div id="projects" className="py-24">
 					<Projects />
 				</div>
+
+				<div id="achievements" className="py-24">
+          			<Achievements />
+        		</div>
 
 				{/* <div id="about" className="py-24">
 					<About

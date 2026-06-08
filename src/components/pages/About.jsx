@@ -30,7 +30,7 @@ export default function About() {
           {/* Resume Button */}
           <div className="py-4">
             <a 
-              href="https://drive.google.com/file/d/1_7Z5VrSqmTaTcPijrE1D7rSYZnX_-Nw2/view?usp=sharing" 
+              href="https://drive.google.com/file/d/1-2VUMp07B_-ygkMPuYIsT6WhMSYXT0pP/view?usp=sharing" 
               target="_blank" 
               rel="noreferrer"
             >
