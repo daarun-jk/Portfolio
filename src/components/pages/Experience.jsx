@@ -1,8 +1,5 @@
 import { useState } from "react";
-import Experiences from "../molecules/Experiences";
-import Heading from "../parts/Heading";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // Importing dropdown arrows
-
 import UTSLogo from "../../assets/img/UTS1.png";
 import UnisysLogo from "../../assets/img/Unisys5.png";
 import VTFLogo from "../../assets/img/VTF3.png";
@@ -20,7 +17,7 @@ const ExperienceItem = ({ exp, index }) => {
       <div className="absolute left-[-5px] md:left-[27px] top-8 h-3 w-3 bg-sky-500 rounded-full ring-4 ring-white dark:ring-black z-10"></div>
 
       {/* Clickable Header Box */}
-      <div 
+      <div
         className="flex flex-col md:flex-row md:items-center justify-between cursor-pointer bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 hover:border-sky-300 dark:hover:border-sky-700 transition-colors rounded-xl p-4 md:p-5"
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -36,7 +33,7 @@ const ExperienceItem = ({ exp, index }) => {
               </div>
             )}
           </div>
-          
+
           <div>
             <h3 className="text-xl font-bold text-black dark:text-white font-poppins">
               {exp.role}
@@ -46,7 +43,7 @@ const ExperienceItem = ({ exp, index }) => {
             </h4>
           </div>
         </div>
-        
+
         {/* Right Side: Date & Chevron Icon */}
         <div className="flex items-center justify-between mt-4 md:mt-0 gap-4 pl-14 md:pl-0">
           <div className="px-3 py-1 bg-slate-200 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 text-sm font-semibold rounded-full border border-slate-300 dark:border-zinc-700">
@@ -59,10 +56,9 @@ const ExperienceItem = ({ exp, index }) => {
       </div>
 
       {/* Expandable Bullet Points (Smooth CSS Grid Animation) */}
-      <div 
-        className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
-        }`}
+      <div
+        className={`grid transition-all duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
+          }`}
       >
         <div className="overflow-hidden">
           <ul className="list-disc ml-14 md:ml-28 pr-4 pb-4 space-y-3 text-slate-700 dark:text-slate-300">
@@ -85,7 +81,7 @@ export default function Experience() {
       role: "Information Technology Intern",
       company: "The University of Texas System",
       date: "Jun 2025 – May 2026",
-      logo: UTSLogo, // Replace 'null' with 'UTLogo' once imported
+      logo: UTSLogo,
       bullets: [
         "Built a Python optimization engine using Mixed Integer Linear Programming to automate software release schedules.",
         "Engineered evaluation pipelines to benchmark LLMs for latency, throughput, and quality before enterprise integration.",
@@ -96,7 +92,7 @@ export default function Experience() {
       role: "Associate Engineer",
       company: "Unisys",
       date: "Mar 2022 – Jun 2024",
-      logo: UnisysLogo, // Replace 'null' with 'UnisysLogo' once imported
+      logo: UnisysLogo,
       bullets: [
         "Developed a .NET MAUI template to auto-generate MVVM boilerplate from Open API specifications, reducing development time by 50%.",
         "Optimized microservices architecture to integrate Active Directory, strengthening security and access control.",
@@ -105,11 +101,11 @@ export default function Experience() {
         "Enhanced a WPF automation tool for Windows Updates and engineered a WiX installer to simplify deployment.",
       ],
     },
-	{
+    {
       role: "Penetration Testing Intern",
       company: "Virtually Testing Foundation",
       date: "Oct 2021 – Dec 2021",
-      logo: VTFLogo, // Replace 'null' with 'VTFLogo' once imported
+      logo: VTFLogo,
       bullets: [
         "Exploited and mitigated OWASP Top 10 vulnerabilities using hands-on labs provided and prepared Pen-testing reports.",
       ],
@@ -118,7 +114,7 @@ export default function Experience() {
       role: "Research Intern",
       company: "Indian Institute of Science",
       date: "Sep 2021 – Oct 2021",
-      logo: IIScLogo, // Replace 'null' with 'IIScLogo' once imported
+      logo: IIScLogo,
       bullets: [
         "Engineered the data plane of a Linux kernel-level eBPF network packet filter to regulate commercial drone traffic, optimizing driver-level privacy protocols for low-latency edge performance.",
       ],
@@ -131,7 +127,7 @@ export default function Experience() {
 
       {/* Timeline Container */}
       <div className="relative max-w-4xl mx-auto mt-10">
-        
+
         {/* The Vertical Line */}
         <div className="absolute left-0 md:left-8 top-8 bottom-0 w-[2px] bg-sky-200 dark:bg-zinc-800"></div>
 
@@ -141,7 +137,7 @@ export default function Experience() {
             <ExperienceItem key={index} exp={exp} index={index} />
           ))}
         </div>
-        
+
       </div>
     </div>
   );
@@ -150,45 +146,12 @@ export default function Experience() {
 
 
 
-// export default function Experience() {
-// 	return (
-// 		<div className="mb-24">
-// 			<Heading section="experience" />
-// 			<Experiences
-// 				float="right"
-// 				title="Associate Engineer"
-// 				image="bg-Unisys_logo"
-// 				description="Developed a custom .NET MAUI project template in Visual Studio to generate REST API Client using the Nswag
-// 				toolchain and generate Views and View Models using T4 templates, given a project-specific OpenAPI specification"
-// 				description1="Created a Windows Installer (.msi) using WIX Toolset with custom actions to elevate privilege and launch a Readme file"
-// 				company="Unisys India (Aug 2022 - Present)"
-// 			/>
-// 			<Experiences
-// 				float="left"
-// 				title="Student Intern"
-// 				image="bg-Unisys_logo"
-// 				description="Worked on a custom command line application in .NET C# for Web application operations using REST API"
-// 				description1="Designed and developed automation test cases using Pester framework with the help of the .NET C# command line application"
-// 				company="Unisys India (Mar 2022 - July 2022)"		
-// 			/>
-
-// 			<Experiences
-// 				float="right"
-// 				title="Penetration Testing Intern"
-// 				image="bg-VTF_logo"
-// 				description="Exploited and mitigated OWASP Top 10 vulnerabilities using hands-on labs provided and prepared Pen-testing reports"
-// 				company="Virtually Testing Foundation (Oct 2021 - Dec 2021)"
-// 			/>
-
-// 			<Experiences
-// 				float="left"
-// 				title="Research Intern"
-// 				image="bg-IISc_logo"
-// 				description="Explored eBPF and its capabilities to run programs at the Linux Kernel level"
-// 				description1="Developed an egress network packet filtering based on IP addresses using eBPF program and eBPF maps"
-// 				company="Indian Institute of Science (Sept 2021 - Oct 2021)"
-// 			/>
-
-// 		</div>
-// 	);
-// }
+function Heading(props) {
+  return (
+    <div className="w-full">
+      <h1 className="flex items-center before:content-['#'] before:text-sky-500 font-fira font-medium text-3xl text-black dark:text-white after:content-[''] after:block after:relative after:top-[2px] after:w-80 after:h-[1.5px] after:bg-sky-500 after:ml-5 mb-10">
+        {props.section}
+      </h1>
+    </div>
+  );
+}

@@ -1,4 +1,3 @@
-import Heading from "../parts/Heading";
 import { FaTrophy, FaMedal, FaBookOpen } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
 
@@ -34,13 +33,13 @@ export default function Achievements() {
 
       {/* Centered, constrained width for a premium reading experience */}
       <div className="flex flex-col max-w-4xl mx-auto mt-12">
-        
+
         {achievements.map((item, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className="group flex flex-col md:flex-row items-start gap-6 md:gap-10 py-10 border-b border-slate-200 dark:border-zinc-800 last:border-0"
           >
-            
+
             {/* Left: Minimal Floating Icon */}
             <div className="mt-1 shrink-0">
               <div className="flex items-center justify-center w-16 h-16 bg-slate-50 dark:bg-zinc-900 rounded-full border border-slate-100 dark:border-zinc-800 shadow-sm transition-transform duration-500 group-hover:scale-110">
@@ -69,9 +68,9 @@ export default function Achievements() {
               {/* Minimal Link */}
               {item.link && (
                 <div className="mt-4">
-                  <a 
-                    href={item.link} 
-                    target="_blank" 
+                  <a
+                    href={item.link}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className={`inline-flex items-center gap-2 text-[15px] font-bold tracking-wide transition-colors ${item.linkColor}`}
                   >
@@ -85,6 +84,16 @@ export default function Achievements() {
         ))}
 
       </div>
+    </div>
+  );
+}
+
+function Heading(props) {
+  return (
+    <div className="w-full">
+      <h1 className="flex items-center before:content-['#'] before:text-sky-500 font-fira font-medium text-3xl text-black dark:text-white after:content-[''] after:block after:relative after:top-[2px] after:w-80 after:h-[1.5px] after:bg-sky-500 after:ml-5 mb-10">
+        {props.section}
+      </h1>
     </div>
   );
 }

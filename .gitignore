@@ -1,0 +1,16 @@
+node_modules
+
+# Build folder
+/build
+
+# IDE / AI configs
+/.vscode
+/.aiexclude
+
+# Unused/untracked images
+src/assets/img/Blockchain*
+src/assets/img/CryptoSMS*
+src/assets/img/Droverot*
+src/assets/img/Openeyes*
+src/assets/img/Daarun1.png
+src/assets/img/NMIT6.png

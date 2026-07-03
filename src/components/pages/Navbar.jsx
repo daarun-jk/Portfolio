@@ -1,5 +1,4 @@
-import Section from "../parts/Section";
-// import logo from "../../assets/img/logo.png";
+import { scrollToElement } from "../scrollAnimations";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
@@ -30,7 +29,7 @@ export default function Navbar(props) {
   return (
     // Changed to z-50 so the Navbar is always the highest element on the page
     <div className="sticky top-0 z-50 flex flex-row justify-between w-full items-center px-6 lg:px-12 py-5 bg-white/90 dark:bg-black/90 backdrop-blur-md">
-      
+
       {/* LEFT: Logo / Name */}
       {/* <div className="z-50 shrink-0">
           <div className="text-2xl font-bold text-black dark:text-white">
@@ -44,7 +43,7 @@ export default function Navbar(props) {
           <Section key={index} title={section} />
         ))}
       </div>
-      
+
       {/* RIGHT: Desktop Dark Mode Toggle */}
       <div className="hidden lg:flex shrink-0 items-center">
         <div className="h-6 w-px bg-gray-300 dark:bg-gray-700 mr-6"></div>
@@ -74,14 +73,14 @@ export default function Navbar(props) {
               <Section title={section} />
             </div>
           ))}
-          
+
           {/* Mobile Dark Mode Toggle */}
           <div className="h-px w-24 bg-gray-300 dark:bg-gray-700 my-4"></div>
-          <div 
-            onClick={() => { 
-              setDarkMode(!darkMode); 
-              setNav(false); 
-            }} 
+          <div
+            onClick={() => {
+              setDarkMode(!darkMode);
+              setNav(false);
+            }}
             className="cursor-pointer flex items-center gap-3"
           >
             {darkMode ? (
@@ -92,6 +91,22 @@ export default function Navbar(props) {
           </div>
         </ul>
       )}
+    </div>
+  );
+}
+
+function Section(props) {
+  return (
+    <div className="flex">
+      <button
+        className="ml-16 text-lg font-fira text-black dark:text-white focus:text-black dark:focus:text-white focus:font-bold"
+        onClick={(event) => {
+          scrollToElement(props.title);
+        }}
+      >
+        <span className="text-sky-500">#</span>
+        {props.title}
+      </button>
     </div>
   );
 }
