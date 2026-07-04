@@ -1,5 +1,6 @@
 import UTDLogo from "../../assets/img/UTD4.png";
 import NMITLogo from "../../assets/img/NMIT5.png";
+import { motion } from "framer-motion";
 
 export default function Education() {
   const educations = [
@@ -14,77 +15,76 @@ export default function Education() {
       title: "Nitte Meenakshi Institute of Technology (NMIT)",
       year: "Aug 2018 - July 2022",
       description: "Bachelor of Engineering (B.E), Computer Science and Engineering",
-      affiliation: "Affiliated to  Visvesvaraya Technological University (VTU)",
+      affiliation: "Affiliated to Visvesvaraya Technological University (VTU)",
       grade: "GPA: 9.19 / 10",
       logo: NMITLogo,
     },
   ];
 
   return (
-    <div className="w-full mb-24 overflow-hidden">
-      <Heading section="Education" />
+    <div className="w-full max-w-5xl mx-auto h-full mt-4 md:mt-10">
+      <Heading section="Training Data (Education)" />
 
-      <div className="relative max-w-5xl mx-auto mt-14">
+      <div className="relative mt-8">
 
-        {/* The Central Vertical Line */}
-        {/* On mobile, it stays on the left (left-8). On desktop, it centers (left-1/2) */}
-        <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] bg-sky-200 dark:bg-zinc-800 md:-translate-x-1/2"></div>
+        {/* The Left Vertical Line */}
+        <div className="absolute left-6 top-6 bottom-0 w-[2px] bg-gradient-to-b from-sky-400 to-transparent dark:from-sciCyan dark:to-transparent opacity-50"></div>
 
-        <div className="flex flex-col gap-12 md:gap-0">
+        <div className="flex flex-col gap-6">
           {educations.map((edu, index) => {
-            // Logic to alternate sides: Even indexes on the left, Odd on the right
-            const isLeft = index % 2 === 0;
-
             return (
-              <div
+              <motion.div
                 key={index}
-                className="relative flex flex-col md:flex-row items-center justify-between md:mb-16 w-full"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="relative flex items-start w-full group pl-16 md:pl-20"
               >
 
-                {/* Center Logo Node */}
-                <div className="absolute left-8 md:left-1/2 -translate-x-1/2 flex items-center justify-center w-16 h-16 bg-white dark:bg-zinc-900 rounded-full border-4 border-slate-50 dark:border-zinc-800 shadow-md z-10 p-2">
+                {/* Left Logo Node */}
+                <div className="absolute left-0 flex items-center justify-center w-12 h-12 bg-white/80 dark:bg-black backdrop-blur-md dark:backdrop-blur-none rounded-lg border border-slate-200 dark:border-sciCyan shadow-sm z-10 p-1 group-hover:border-sky-400 dark:group-hover:border-sciCyan transition-colors duration-300 mt-2">
                   {edu.logo ? (
                     <img src={edu.logo} alt={`${edu.title} logo`} className="w-full h-full object-contain" />
                   ) : (
-                    <div className="w-full h-full bg-slate-100 flex items-center justify-center text-[10px] font-bold text-slate-400 rounded-full">
+                    <div className="w-full h-full bg-slate-100 flex items-center justify-center text-[10px] font-bold text-slate-400 rounded-lg">
                       LOGO
                     </div>
                   )}
                 </div>
 
                 {/* Content Box */}
-                {/* Dynamically pushes left or right on desktop, but stays left on mobile */}
-                <div
-                  className={`w-full md:w-[45%] pl-24 md:pl-0 pt-2 md:pt-0 
-                  ${isLeft ? "md:mr-auto md:pr-12 md:text-right" : "md:ml-auto md:pl-12 md:text-left"}`}
-                >
-                  <h3 className="text-xl md:text-2xl font-bold text-black dark:text-white font-poppins leading-tight">
-                    {edu.title}
-                  </h3>
+                <div className="w-full">
+                  <div className="bg-white/50 dark:bg-black backdrop-blur-md dark:backdrop-blur-none border border-slate-200/50 dark:border-sciCyan p-5 rounded-xl group-hover:border-sky-400 dark:group-hover:border-sciCyan transition-colors shadow-sm flex flex-col md:flex-row justify-between gap-4">
+                    <div className="flex-1">
+                      <h3 className="text-lg md:text-xl font-bold text-slate-900 dark:text-white font-poppins leading-tight group-hover:text-sky-600 dark:group-hover:text-sciCyan transition-colors">
+                        {edu.title}
+                      </h3>
 
-                  <h4 className="text-[17px] font-semibold text-sky-600 dark:text-sky-400 mt-2">
-                    {edu.description}
-                  </h4>
+                      <h4 className="text-[15px] font-semibold text-sky-600 dark:text-sky-400 mt-1 font-fira">
+                        {edu.description}
+                      </h4>
 
-                  {edu.affiliation && (
-                    <p className="text-sm text-slate-600 dark:text-gray-400 mt-0.5 font-medium">
-                      {edu.affiliation}
-                    </p>
-                  )}
+                      {edu.affiliation && (
+                        <p className="text-[13px] text-slate-600 dark:text-white mt-1 font-medium font-fira">
+                          {edu.affiliation}
+                        </p>
+                      )}
+                    </div>
 
-                  <div className="mt-1 text-slate-500 dark:text-slate-400 text-sm font-semibold tracking-wide">
-                    {edu.year}
-                  </div>
-
-                  {/* Clean GPA Badge */}
-                  <div className="mt-4">
-                    <span className="inline-block px-4 py-1.5 bg-slate-50 dark:bg-zinc-800/50 border border-slate-200 dark:border-zinc-700 rounded-lg text-slate-700 dark:text-slate-300 font-medium shadow-sm">
-                      {edu.grade}
-                    </span>
+                    <div className="flex flex-col items-start md:items-end justify-start shrink-0 gap-2">
+                      <div className="text-slate-500 dark:text-white text-[12px] font-fira tracking-wide">
+                        <span className="text-sky-500 dark:text-sciCyan">[{edu.year}]</span>
+                      </div>
+                      
+                      {/* Clean GPA Badge */}
+                      <div className="px-3 py-1 bg-sky-50 dark:bg-sciCyan/10 border border-sky-200 dark:border-sciCyan rounded text-sky-700 dark:text-sciCyan font-bold shadow-sm font-fira text-[12px]">
+                        {edu.grade}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-              </div>
+              </motion.div>
             );
           })}
         </div>
@@ -93,13 +93,18 @@ export default function Education() {
   );
 }
 
-
 function Heading(props) {
   return (
-    <div className="w-full">
-      <h1 className="flex items-center before:content-['#'] before:text-sky-500 font-fira font-medium text-3xl text-black dark:text-white after:content-[''] after:block after:relative after:top-[2px] after:w-80 after:h-[1.5px] after:bg-sky-500 after:ml-5 mb-10">
+    <motion.div 
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      className="w-full"
+    >
+      <h1 className="flex items-center font-fira font-bold text-2xl md:text-3xl text-slate-900 dark:text-white mb-6">
+        <span className="text-sky-500 dark:text-sciCyan mr-3 opacity-80">&gt;</span> 
         {props.section}
+        <div className="ml-5 h-[1px] flex-1 bg-gradient-to-r from-sky-500/50 to-transparent dark:from-sciCyan/50 dark:to-transparent"></div>
       </h1>
-    </div>
+    </motion.div>
   );
 }

@@ -5,6 +5,11 @@ module.exports = {
 	darkMode: "class",
 	theme: {
 		extend: {
+			colors: {
+				sciDark: "#000000",
+				sciCyan: "#00ffcc",
+				sciMagenta: "#ff0055",
+			},
 			fontFamily: {
 				poppins: "'Poppins', sans-serif",
 				fira: "'Fira Code', monospace",

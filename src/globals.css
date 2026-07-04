@@ -5,14 +5,34 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-	background-color: #ffffff;
-	font-family: -apple-system, "Fira Code", "Poppins", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+html, body {
+  background-color: #ffffff;
+  color: #0f172a;
+  font-family: "Fira Code", "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Lock scrolling for full-screen OS vibe */
+  width: 100vw;
+  height: 100vh;
+}
+
+.dark, .dark body {
+  background-color: #000000 !important;
+  color: #ffffff !important;
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-		monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }

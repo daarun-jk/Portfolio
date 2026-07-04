@@ -5,7 +5,7 @@ export default function Footer(props) {
   // Automatically gets the current year so you never have to update it
 
   return (
-    <footer className="w-full border-t border-slate-200 dark:border-zinc-800 bg-white dark:bg-black px-10 md:px-32 py-10 transition-colors duration-300">
+    <footer className="w-full border-t border-slate-200 dark:border-sciCyan bg-white dark:bg-black px-10 md:px-32 py-10 transition-colors duration-300">
       <div className="flex flex-col md:flex-row justify-between items-center gap-8">
 
         {/* Left Side: Name and Email */}
@@ -15,7 +15,7 @@ export default function Footer(props) {
           </h2>
           <a
             href={`mailto:${props.mail}`}
-            className="mt-2 text-slate-600 dark:text-slate-400 hover:text-sky-500 dark:hover:text-sky-400 transition-colors text-base font-medium"
+            className="mt-2 text-slate-600 dark:text-white hover:text-sky-500 dark:hover:text-sky-400 transition-colors text-base font-medium"
           >
             {props.mail}
           </a>
@@ -40,7 +40,7 @@ export default function Footer(props) {
       </div>
 
       {/* Bottom: Copyright Notice */}
-      <div className="mt-10 pt-6 border-t border-slate-100 dark:border-zinc-800/50 text-center text-sm text-slate-500 dark:text-slate-500">
+      <div className="mt-10 pt-6 border-t border-slate-100 dark:border-sciCyan text-center text-sm text-slate-500 dark:text-slate-500">
         Designed & Built by {props.name}.
       </div>
     </footer>

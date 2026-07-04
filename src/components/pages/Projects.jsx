@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaGithub } from "react-icons/fa"; // Importing GitHub icon
 import { FiExternalLink } from "react-icons/fi"; // Optional: icon for live links
-
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -88,86 +88,105 @@ export default function Projects() {
     : projects.filter((p) => p.categories.includes(activeFilter));
 
   return (
-    <div className="w-full mb-24 min-h-[500px]">
-      <Heading section="Projects" />
+    <div className="w-full max-w-6xl mx-auto h-full mt-4 md:mt-10">
+      <Heading section="Active Deployments" />
 
       {/* Filter Buttons */}
-      <div className="flex flex-wrap gap-3 mt-10 mb-8 justify-center md:justify-start">
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.1 }}
+        className="flex flex-wrap gap-2.5 mt-8 mb-6 justify-center md:justify-start"
+      >
         {filterList.map((filter) => (
           <button
             key={filter}
             onClick={() => setActiveFilter(filter)}
-            className={`px-5 py-2 rounded-full text-[14px] font-semibold transition-all duration-300 border ${activeFilter === filter
-              ? "bg-sky-500 text-white border-sky-500 shadow-md"
-              : "bg-transparent text-slate-600 dark:text-zinc-400 border-slate-300 dark:border-zinc-700 hover:border-sky-400 hover:text-sky-500 dark:hover:text-sky-400"
+            className={`px-4 py-1.5 rounded-md text-[12px] md:text-[13px] font-fira font-semibold transition-all duration-300 border ${activeFilter === filter
+              ? "bg-sky-500 text-white border-sky-500 shadow-[0_0_10px_rgba(2,132,199,0.5)] dark:bg-sciCyan dark:text-black dark:border-sciCyan dark:shadow-[0_0_10px_rgba(0,255,204,0.5)]"
+              : "bg-white/50 dark:bg-black backdrop-blur-md dark:backdrop-blur-none text-slate-600 dark:text-white border-slate-300 dark:border-sciCyan hover:border-sky-400 dark:hover:border-sciCyan hover:text-sky-600 dark:hover:text-sciCyan"
               }`}
           >
             {filter}
           </button>
         ))}
-      </div>
+      </motion.div>
 
       {/* CSS Grid for the Project Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProjects.map((project, index) => (
-          <div
-            key={index}
-            className="group flex flex-col justify-between bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-sky-300 dark:hover:border-sky-700 h-full"
-          >
-            <div>
-              {/* Header: Title and Icons */}
-              <div className="flex items-start justify-between mb-4">
-                <h3 className="text-xl font-bold text-black dark:text-white font-poppins group-hover:text-sky-500 transition-colors pr-2">
-                  {project.title}
-                </h3>
+      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 perspective-1000">
+        <AnimatePresence>
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              layout
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: -20 }}
+              transition={{ duration: 0.3 }}
+              whileHover={{ 
+                scale: 1.02, 
+                boxShadow: "0 10px 30px -10px rgba(0, 255, 204, 0.2)" 
+              }}
+              className="group flex flex-col justify-between bg-white/60 dark:bg-black backdrop-blur-lg dark:backdrop-blur-none border border-slate-200/50 dark:border-sciCyan rounded-xl p-5 transition-colors duration-300 hover:border-sky-400 dark:hover:border-sciCyan h-full relative overflow-hidden"
+            >
+              {/* Glowing Top Border */}
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-sky-400 dark:via-sciCyan to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                {/* Links Section */}
-                <div className="flex gap-3 shrink-0">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-slate-500 hover:text-black dark:text-slate-400 dark:hover:text-white transition-colors"
-                      aria-label="GitHub Repository"
-                    >
-                      <FaGithub size={22} />
-                    </a>
-                  )}
-                  {project.liveLink && (
-                    <a
-                      href={project.liveLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-slate-500 hover:text-sky-500 dark:text-slate-400 transition-colors"
-                      aria-label="Live Project Link"
-                    >
-                      <FiExternalLink size={22} />
-                    </a>
-                  )}
+              <div>
+                {/* Header: Title and Icons */}
+                <div className="flex items-start justify-between mb-4">
+                  <h3 className="text-lg md:text-xl font-bold text-slate-900 dark:text-white font-poppins group-hover:text-sky-600 dark:group-hover:text-sciCyan transition-colors pr-2">
+                    {project.title}
+                  </h3>
+
+                  {/* Links Section */}
+                  <div className="flex gap-2.5 shrink-0 relative z-10">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-slate-500 hover:text-sky-600 dark:text-white dark:hover:text-sciCyan transition-colors"
+                        aria-label="GitHub Repository"
+                      >
+                        <FaGithub size={18} />
+                      </a>
+                    )}
+                    {project.liveLink && (
+                      <a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-slate-500 hover:text-sky-600 dark:text-white dark:hover:text-sciCyan transition-colors"
+                        aria-label="Live Project Link"
+                      >
+                        <FiExternalLink size={18} />
+                      </a>
+                    )}
+                  </div>
                 </div>
+
+                {/* Description */}
+                <p className="text-slate-600 dark:text-white text-[13px] leading-relaxed mb-6 font-fira">
+                  {project.description}
+                </p>
               </div>
 
-              {/* Description */}
-              <p className="text-slate-600 dark:text-slate-300 text-[15px] leading-relaxed mb-6">
-                {project.description}
-              </p>
-            </div>
-
-            {/* Footer: Tech Stack Badges */}
-            <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-200 dark:border-zinc-800">
-              {project.techStack.map((tech, i) => (
-                <span
-                  key={i}
-                  className="px-2.5 py-1 bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 text-[11px] font-bold uppercase tracking-wider rounded-md"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+              {/* Footer: Tech Stack Badges */}
+              <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-slate-200/50 dark:border-sciCyan">
+                {project.techStack.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="px-1.5 py-0.5 bg-sky-100/50 dark:bg-sciCyan/10 text-sky-700 dark:text-sciCyan text-[10px] font-bold font-fira uppercase tracking-wider rounded border border-sky-200/50 dark:border-sciCyan"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </div>
   );
 }
@@ -175,10 +194,16 @@ export default function Projects() {
 
 function Heading(props) {
   return (
-    <div className="w-full">
-      <h1 className="flex items-center before:content-['#'] before:text-sky-500 font-fira font-medium text-3xl text-black dark:text-white after:content-[''] after:block after:relative after:top-[2px] after:w-80 after:h-[1.5px] after:bg-sky-500 after:ml-5 mb-10">
+    <motion.div 
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      className="w-full"
+    >
+      <h1 className="flex items-center font-fira font-bold text-2xl md:text-3xl text-slate-900 dark:text-white mb-6">
+        <span className="text-sky-500 dark:text-sciCyan mr-3 opacity-80">&gt;</span> 
         {props.section}
+        <div className="ml-5 h-[1px] flex-1 bg-gradient-to-r from-sky-500/50 to-transparent dark:from-sciCyan/50 dark:to-transparent"></div>
       </h1>
-    </div>
+    </motion.div>
   );
 }

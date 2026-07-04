@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // Importing dropdown arrows
+import { FaChevronDown, FaChevronUp, FaTerminal } from "react-icons/fa"; // Importing dropdown arrows
 import UTSLogo from "../../assets/img/UTS1.png";
 import UnisysLogo from "../../assets/img/Unisys5.png";
 import VTFLogo from "../../assets/img/VTF3.png";
 import IIScLogo from "../../assets/img/IISc2.png";
+import { motion, AnimatePresence } from "framer-motion";
 
 
 // Sub-component to handle the open/close state for each individual job
@@ -12,65 +13,81 @@ const ExperienceItem = ({ exp, index }) => {
   const [isOpen, setIsOpen] = useState(index === 0);
 
   return (
-    <div className="relative pl-8 md:pl-20 mb-8">
+    <motion.div 
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      className="relative pl-8 md:pl-16 mb-8"
+    >
       {/* Timeline Dot */}
-      <div className="absolute left-[-5px] md:left-[27px] top-8 h-3 w-3 bg-sky-500 rounded-full ring-4 ring-white dark:ring-black z-10"></div>
+      <div className="absolute left-[-5px] md:left-[21px] top-6 h-3 w-3 bg-sky-500 dark:bg-sciCyan rounded-sm ring-4 ring-slate-50 dark:ring-sciDark z-10 shadow-[0_0_10px_rgba(0,255,204,0.8)]"></div>
 
-      {/* Clickable Header Box */}
+      {/* Clickable Header Box (Glassmorphism) */}
       <div
-        className="flex flex-col md:flex-row md:items-center justify-between cursor-pointer bg-slate-50 dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 hover:border-sky-300 dark:hover:border-sky-700 transition-colors rounded-xl p-4 md:p-5"
+        className="flex flex-col md:flex-row md:items-center justify-between cursor-pointer bg-white/50 dark:bg-black backdrop-blur-md dark:backdrop-blur-none border border-slate-200/50 dark:border-sciCyan hover:border-sky-400 dark:hover:border-sciCyan hover:shadow-[0_0_15px_rgba(0,255,204,0.15)] transition-all rounded-xl p-4 group"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-4">
           {/* Company Logo Box */}
-          <div className="w-14 h-14 bg-white rounded-lg flex items-center justify-center p-1.5 shadow-sm shrink-0 overflow-hidden">
+          <div className="w-12 h-12 bg-white/80 dark:bg-sciCyan/10 rounded-lg flex items-center justify-center p-1.5 shadow-sm shrink-0 overflow-hidden border border-slate-200 dark:border-sciCyan group-hover:border-sky-400 dark:group-hover:border-sciCyan transition-colors">
             {exp.logo ? (
               <img src={exp.logo} alt={`${exp.company} logo`} className="w-full h-full object-contain" />
             ) : (
-              /* Fallback if logo is missing */
-              <div className="w-full h-full bg-slate-100 flex items-center justify-center text-[10px] font-bold text-slate-400 rounded">
-                LOGO
-              </div>
+              <FaTerminal className="text-xl text-slate-500" />
             )}
           </div>
 
           <div>
-            <h3 className="text-xl font-bold text-black dark:text-white font-poppins">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white font-poppins group-hover:text-sky-600 dark:group-hover:text-sciCyan transition-colors">
               {exp.role}
             </h3>
-            <h4 className="text-md font-medium text-sky-600 dark:text-sky-400 mt-1">
-              {exp.company}
+            <h4 className="text-[15px] font-medium text-sky-600 dark:text-sky-400 mt-0.5 font-fira flex items-center gap-2">
+              <span className="opacity-50 text-xs">@</span> {exp.company}
             </h4>
           </div>
         </div>
 
         {/* Right Side: Date & Chevron Icon */}
-        <div className="flex items-center justify-between mt-4 md:mt-0 gap-4 pl-14 md:pl-0">
-          <div className="px-3 py-1 bg-slate-200 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 text-sm font-semibold rounded-full border border-slate-300 dark:border-zinc-700">
-            {exp.date}
+        <div className="flex items-center justify-between mt-3 md:mt-0 gap-4 pl-14 md:pl-0">
+          <div className="px-2.5 py-1 bg-slate-200/50 dark:bg-black text-slate-700 dark:text-white text-xs font-fira rounded-md border border-slate-300/50 dark:border-sciCyan">
+            [{exp.date}]
           </div>
-          <div className="text-slate-400 dark:text-slate-500 hidden md:block">
-            {isOpen ? <FaChevronUp /> : <FaChevronDown />}
+          <div className="text-sky-500 dark:text-sciCyan hidden md:block transition-transform duration-300">
+            {isOpen ? <FaChevronUp size={14} /> : <FaChevronDown size={14} />}
           </div>
         </div>
       </div>
 
-      {/* Expandable Bullet Points (Smooth CSS Grid Animation) */}
-      <div
-        className={`grid transition-all duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0"
-          }`}
-      >
-        <div className="overflow-hidden">
-          <ul className="list-disc ml-14 md:ml-28 pr-4 pb-4 space-y-3 text-slate-700 dark:text-slate-300">
-            {exp.bullets.map((bullet, i) => (
-              <li key={i} className="leading-relaxed text-[15px]">
-                {bullet}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
+      {/* Expandable Bullet Points (Framer Motion) */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <div className="mt-3 bg-white/30 dark:bg-sciCyan/5 backdrop-blur-sm border-l-2 border-sky-400 dark:border-sciCyan ml-6 md:ml-10 p-4 rounded-r-lg">
+              <ul className="list-none space-y-2.5 text-slate-700 dark:text-white font-fira text-[13px]">
+                {exp.bullets.map((bullet, i) => (
+                  <motion.li 
+                    key={i} 
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.05 + (i * 0.05) }}
+                    className="leading-relaxed flex items-start gap-2"
+                  >
+                    <span className="text-sky-500 dark:text-sciCyan mt-0.5 text-[10px]">&gt;</span>
+                    {bullet}
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 };
 
@@ -122,14 +139,14 @@ export default function Experience() {
   ];
 
   return (
-    <div className="w-full mb-24">
-      <Heading section="Experience" />
+    <div className="w-full max-w-5xl mx-auto h-full mt-4 md:mt-10">
+      <Heading section="System Logs: Experience" />
 
       {/* Timeline Container */}
-      <div className="relative max-w-4xl mx-auto mt-10">
+      <div className="relative mt-8">
 
         {/* The Vertical Line */}
-        <div className="absolute left-0 md:left-8 top-8 bottom-0 w-[2px] bg-sky-200 dark:bg-zinc-800"></div>
+        <div className="absolute left-1 md:left-6 top-6 bottom-0 w-[2px] bg-gradient-to-b from-sky-400 to-transparent dark:from-sciCyan dark:to-transparent opacity-50"></div>
 
         {/* Experience Items Mapping */}
         <div className="flex flex-col">
@@ -144,14 +161,18 @@ export default function Experience() {
 }
 
 
-
-
 function Heading(props) {
   return (
-    <div className="w-full">
-      <h1 className="flex items-center before:content-['#'] before:text-sky-500 font-fira font-medium text-3xl text-black dark:text-white after:content-[''] after:block after:relative after:top-[2px] after:w-80 after:h-[1.5px] after:bg-sky-500 after:ml-5 mb-10">
+    <motion.div 
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      className="w-full"
+    >
+      <h1 className="flex items-center font-fira font-bold text-2xl md:text-3xl text-slate-900 dark:text-white mb-6">
+        <span className="text-sky-500 dark:text-sciCyan mr-3 opacity-80">&gt;</span> 
         {props.section}
+        <div className="ml-5 h-[1px] flex-1 bg-gradient-to-r from-sky-500/50 to-transparent dark:from-sciCyan/50 dark:to-transparent"></div>
       </h1>
-    </div>
+    </motion.div>
   );
 }
