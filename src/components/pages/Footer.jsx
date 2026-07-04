@@ -1,5 +1,5 @@
-import { ReactComponent as Github } from "../../assets/svg/Github.svg";
-import { ReactComponent as Linkedin } from "../../assets/svg/Linkedin.svg";
+import Github from "../../assets/svg/Github.svg?react";
+import Linkedin from "../../assets/svg/Linkedin.svg?react";
 
 export default function Footer(props) {
   // Automatically gets the current year so you never have to update it
